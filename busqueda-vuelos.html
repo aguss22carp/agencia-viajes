@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de vuelos | Agencia de Viajes</title>
+</head>
+<body>
+    <header>
+        <h1>Agencia de Viajes</h1>
+        <p>Encuentra tu próximo destino</p>
+    </header>
+
+    <main>
+        <h2>Buscar vuelos</h2>
+
+        <form id="formulario-vuelos">
+            <label for="origen">Ciudad de origen:</label>
+            <input type="text" id="origen"
+                   placeholder="Ej. Santiago" required>
+
+            <label for="destino">Ciudad de destino:</label>
+            <input type="text" id="destino"
+                   placeholder="Ej. Buenos Aires" required>
+
+            <label for="fecha">Fecha de salida:</label>
+            <input type="date" id="fecha" required>
+
+            <button type="submit">Buscar vuelos</button>
+        </form>
+
+        <p id="mensaje" aria-live="polite"></p>
+    </main>
+
+    <script>
+        const formulario = document.getElementById("formulario-vuelos");
+        const mensaje = document.getElementById("mensaje");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const origen = document.getElementById("origen").value.trim();
+            const destino = document.getElementById("destino").value.trim();
+            const fecha = document.getElementById("fecha").value;
+
+            if (origen.toLowerCase() === destino.toLowerCase()) {
+                mensaje.textContent =
+                    "El origen y el destino deben ser diferentes.";
+                return;
+            }
+
+            mensaje.textContent =
+                `Búsqueda preparada: ${origen} a ${destino}, fecha ${fecha}.`;
+        });
+    </script>
+</body>
+</html>
